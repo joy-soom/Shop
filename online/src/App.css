@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+  text-align: center;
+}
+.mainBg {
+  height: 300px;
+  background-image: url("./furniture5.jpg");
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 50px;
+}
+
+.content {
+  height: 300px;
+}
+.contentWord {
+  height: 300px;
+  font-size: 100px;
+  font-weight: 700;
+  color: rgb(235, 232, 232);
+
+  line-height: 300px;
+
+  animation: word 1 5s linear;
+}
+
+.productName {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+/* detail css */
+
+.detailBody {
+  background-color: #d1e8ee;
+}
+
+.detailBox {
+  display: flex;
+  padding: 40px;
+  background-color: white;
+  margin-top: 40px;
+  border-radius: 30px 0 30px 0;
+}
+
+.detalImg {
+  margin-right: 10px;
+}
+
+.order {
+  color: #fff;
+  background-color: #005aee;
+
+  border-style: none;
+
+  height: 40px;
+  width: fit-content;
+  padding: 8px 25px;
+  border-radius: 10px;
+}
+
+@keyframes word {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .col {
+    flex-direction: column;
+  }
+
+  .contentWord {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 421px) and (max-width: 1022px) {
+  .contentWord {
+    font-size: 50px;
+  }
+}
+
+@media screen and (min-width: 1023px) {
+  .contentWord {
+    font-size: 70px;
+  }
+}
+

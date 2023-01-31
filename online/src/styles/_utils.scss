@@ -1,0 +1,17 @@
+// 여러 파일에서 사용되는 sass 변수 및 mixin
+
+//COLOR
+$color-primary-400: rgb(0, 90, 238);
+$color-secondary-200: rgb(209, 232, 238);
+$color-secondary-100: rgb(255, 255, 255);
+
+//MIXIN
+@mixin button($bg-color, $color) {
+  color: $color-secondary-100;
+  background-color: $color-primary-400;
+  border-style: none;
+  height: 40px;
+  width: fit-content;
+  padding: 8px 25px;
+  border-radius: 10px;
+}

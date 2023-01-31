@@ -1,4 +1,4 @@
-import "./App.css";
+
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 //아니면 public 폴더에 있는 index.html 의 head안에 css link 복붙헤서 넣음된다
@@ -6,6 +6,9 @@ import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import data from "./data.js";
 //외부 라이브러리는 필요할때 마다 검색해서 쓰면됨
 import { Routes, Route, Link } from "react-router-dom"; //react dom에서 가져와서 쓸 컴포넌트들
+import DetailProducts from "./components/DetailProducts";
+import './styles/App.scss'
+
 
 function App() {
   let [bed] = useState(data);
@@ -51,7 +54,7 @@ function App() {
             <div className="container">
               <div className="detailBodyColor row">
                 {bed.map((a, i) => {
-                  return <Details bed={bed[i]} i={1 + i} key={i}></Details>;
+                  return <DetailProducts bed={bed[i]} i={1 + i} key={i}></DetailProducts>;
                 })}
               </div>
             </div>
@@ -80,25 +83,4 @@ function Card(props) {
   );
 }
 
-function Details(props) {
-  return (
-    <div className="detailBody">
-    <div className = "detailBox">
-      <div className="detalImg col-md-6">
-        <img 
-          src={process.env.PUBLIC_URL + "/image/bed" + props.i + ".jpg"}
-          width="100%"
-        />
-      </div>
-      <div className="detailDescription col-md-6">
-        <h4 className="pt-5">{props.bed.title}</h4>
-        <p>{props.bed.content}</p>
-        <p>{props.bed.price}</p>
-        <button className="order">주문하기</button>
-      </div>
-    </div>
-    </div>
-  );
-}
 export default App;
-

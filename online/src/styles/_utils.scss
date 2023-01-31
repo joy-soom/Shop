@@ -2,9 +2,12 @@
 
 //COLOR
 $color-primary-400: rgb(0, 90, 238);
+$color-secondary-300: rgb(235, 232, 232);
 $color-secondary-200: rgb(209, 232, 238);
 $color-secondary-100: rgb(255, 255, 255);
 
+//SIZE
+$height-md: 300px;
 //MIXIN
 @mixin button($bg-color, $color) {
   color: $color-secondary-100;

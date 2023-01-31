@@ -5,9 +5,10 @@ import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import data from "./data.js";
 //외부 라이브러리는 필요할때 마다 검색해서 쓰면됨
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom"; //react dom에서 가져와서 쓸 컴포넌트들
-import DetailProducts from "./components/DetailProducts";
+// import DetailProducts from "./components/DetailProducts";
 import "./styles/App.scss";
 import NotFound from "./pages/NotFound";
+import Detail from "./pages/Detail.js";
 
 function App() {
   let [bed] = useState(data);
@@ -68,24 +69,7 @@ function App() {
             </>
           }
         />
-        <Route
-          path="/detail"
-          element={
-            <div className="container">
-              <div className="detailBodyColor row">
-                {bed.map((a, i) => {
-                  return (
-                    <DetailProducts
-                      bed={bed[i]}
-                      i={1 + i}
-                      key={i}
-                    ></DetailProducts>
-                  );
-                })}
-              </div>
-            </div>
-          }
-        />
+        <Route path="/detail" element={<Detail bed={bed} />} />
         {/*
         3. Nested Routes
         about이란 링크 뒤에 

@@ -1,5 +1,5 @@
-import '../styles/Detail.scss'
 import React from "react";
+import '../styles/Detail.scss'
 
 function DetailProducts(props) {
   return (

@@ -1,14 +1,14 @@
 import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-//아니면 public 폴더에 있는 index.html 의 head안에 css link 복붙헤서 넣음된다
 import { Button, Navbar, Container, Nav } from "react-bootstrap";
-import data from "./data.js";
-//외부 라이브러리는 필요할때 마다 검색해서 쓰면됨
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom"; //react dom에서 가져와서 쓸 컴포넌트들
 // import DetailProducts from "./components/DetailProducts";
-import "./styles/App.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
+//아니면 public 폴더에 있는 index.html 의 head안에 css link 복붙헤서 넣음된다
+import data from "./data.js";
+//외부 라이브러리는 필요할때 마다 검색해서 쓰면됨
 import NotFound from "./pages/NotFound";
 import Detail from "./pages/Detail.js";
+import MainPage from "./pages/MainPage.js";
 
 function App() {
   let [bed] = useState(data);
@@ -50,25 +50,7 @@ function App() {
 
       {/* 라우터로 페이지 나누는 법 route = 여기서 페이지 */}
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <div className="mainBg">
-                <div className="content">
-                  <p className="contentWord">Select Your own</p>
-                </div>
-              </div>
-              <div className="container">
-                <div className="row">
-                  {bed.map((a, i) => {
-                    return <Card bed={bed[i]} i={1 + i} key={i}></Card>;
-                  })}
-                </div>
-              </div>
-            </>
-          }
-        />
+        <Route path="/" element={<MainPage bed={bed} />} />
         <Route path="/detail" element={<Detail bed={bed} />} />
         {/*
         3. Nested Routes
@@ -113,18 +95,18 @@ function App() {
   );
 }
 
-function Card(props) {
-  return (
-    <div className="col-md-4">
-      <img
-        src={process.env.PUBLIC_URL + "/image/bed" + props.i + ".jpg"}
-        width="80%"
-        alt="침대"
-      />{" "}
-      <div className="productName">{props.bed.title}</div>{" "}
-      <p>{props.bed.price}</p>
-    </div>
-  );
-}
+// function Card(props) {
+//   return (
+//     <div className="col-md-4">
+//       <img
+//         src={process.env.PUBLIC_URL + "/image/bed" + props.i + ".jpg"}
+//         width="80%"
+//         alt="침대"
+//       />{" "}
+//       <div className="productName">{props.bed.title}</div>{" "}
+//       <p>{props.bed.price}</p>
+//     </div>
+//   );
+// }
 
 export default App;

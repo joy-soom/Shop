@@ -12,11 +12,9 @@ import Detail from "./pages/Detail.js";
 import MainPage from "./pages/MainPage.js";
 import EachDetail from "./pages/EachDetail.js";
 
-
 function App() {
   let [bed] = useState(data);
   let navigate = useNavigate(); // <- 1.페이지 이동도와주는 usenavigate
-
 
   return (
     <div>
@@ -48,12 +46,7 @@ function App() {
         {/* :id 는 아무거나 라는 뜻 그래서eachDetail뒤에 뭘 쓰던 eachDetail페이지 보여줌 
         (참고) URL파라미터 만들 때 - 여러개 가능*/}
         <Route path="*" element={<NotFound />} />
-        
-        
-        
-        
-        
-        
+
         <Route path="/eachDetail/:id" element={<EachDetail bed={bed} />} />
       </Routes>
     </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom"; //react dom에서 가져와서 쓸 컴포넌트들
 // import DetailProducts from "./components/DetailProducts";
-import { useParams } from "react-router-dom"; //유저가URL파라미터에 입력한 거 가져오려면 useParams() 사용
+
 import "bootstrap/dist/css/bootstrap.min.css";
 //아니면 public 폴더에 있는 index.html 의 head안에 css link 복붙헤서 넣음된다
 import data from "./data.js";
@@ -16,7 +16,7 @@ import EachDetail from "./pages/EachDetail.js";
 function App() {
   let [bed] = useState(data);
   let navigate = useNavigate(); // <- 1.페이지 이동도와주는 usenavigate
-  let {id} = useParams(); // <- 유저가 :id 자리에 적은거 가져와줌
+
 
   return (
     <div>

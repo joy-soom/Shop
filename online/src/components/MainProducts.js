@@ -1,4 +1,4 @@
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function MainProducts(props) {
   let navigate = useNavigate();
@@ -7,14 +7,14 @@ function MainProducts(props) {
     <div className="col-md-4">
       <img
         onClick={() => {
-          navigate("/eachDetail/" +props.i);
+          navigate("/eachDetail/" + props.bed.id);
         }}
-        src={process.env.PUBLIC_URL + "/image/bed" + props.i + ".jpg"}
+        src={process.env.PUBLIC_URL + "/image/bed" + props.bed.id + ".jpg"}
         width="80%"
         alt="침대"
-      />{" "}
+      />
       <div className="productName">{props.bed.title}</div>{" "}
-      <p>{props.bed.price}</p>
+      <p>{props.bed.price}$</p>
     </div>
   );
 }

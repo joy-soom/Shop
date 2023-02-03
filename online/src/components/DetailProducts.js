@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/Detail.scss'
 
+
 function DetailProducts(props) {
   return (
     <div className="detailBody">

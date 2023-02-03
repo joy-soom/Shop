@@ -10,10 +10,12 @@ import data from "./data.js";
 import NotFound from "./pages/NotFound";
 import Detail from "./pages/Detail.js";
 import MainPage from "./pages/MainPage.js";
-import EachDetail from "./pages/EachDetail.js";
+import EachDetail from "./components/EachDetail.js";
+import DetailProductsPage from "./pages/DetailProductsPage.js";
+
 
 function App() {
-  let [bed] = useState(data);
+  let [bed,setBed] = useState(data);
   let navigate = useNavigate(); // <- 1.페이지 이동도와주는 usenavigate
 
   return (
@@ -41,7 +43,7 @@ function App() {
       </Navbar>
 
       <Routes>
-        <Route path="/" element={<MainPage bed={bed} />} />
+        <Route path="/" element={<MainPage bed={bed} setBed={setBed}/>} />
         <Route path="/detail" element={<Detail bed={bed} />} />
         {/* :id 는 아무거나 라는 뜻 그래서eachDetail뒤에 뭘 쓰던 eachDetail페이지 보여줌 
         (참고) URL파라미터 만들 때 - 여러개 가능*/}
@@ -49,6 +51,7 @@ function App() {
 
         <Route path="/eachDetail/:id" element={<EachDetail bed={bed} />} />
       </Routes>
+      
     </div>
   );
 }

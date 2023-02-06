@@ -11,7 +11,7 @@ import NotFound from "./pages/NotFound";
 import Detail from "./pages/Detail.js";
 import MainPage from "./pages/MainPage.js";
 import EachDetail from "./components/EachDetail.js";
-import DetailProductsPage from "./pages/DetailProductsPage.js";
+// import DetailProductsPage from "./pages/DetailProductsPage.js";
 
 
 function App() {

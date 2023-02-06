@@ -3,7 +3,7 @@ import "../styles/App.scss";
 import axios from "axios";
 import { useState } from "react";
 
-const MainPage = ({ bed,setBed }) => {
+const MainPage = ({ bed, setBed }) => {
   // let [beds, setBeds] = useState(bed);
   return (
     <>
@@ -15,9 +15,8 @@ const MainPage = ({ bed,setBed }) => {
       <div className="container">
         <div className="row">
           {bed.map((a, i) => {
-            return <MainProducts bed={bed[i]} i={1 + i} key={i}></MainProducts>;
+            return <MainProducts bed={bed[i]} i={i} key={i}></MainProducts>;
           })}
-          
         </div>
       </div>
       <button
@@ -28,14 +27,9 @@ const MainPage = ({ bed,setBed }) => {
               // console.log(결과.data);
               //위의data를 사용해서 html생성해주세요 리액트-> 스위치 조작
               //bed에 데이터 몇개 추가해주세요~ 그럼 html도 알아서 생성될듯
-              // console.log(beds);
-              console.log(결과.data);
-              console.log(bed);
+
               let copy = [...bed, ...결과.data]; //복사본 소장
-              console.log(copy);
               setBed(copy);
-              console.log(setBed);
-             
             });
         }}
       >

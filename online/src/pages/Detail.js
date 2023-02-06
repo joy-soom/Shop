@@ -7,7 +7,7 @@ const Detail = ({bed}) => {
       <div className="detailBodyColor row">
         {bed.map((a, i) => {
           return (
-            <DetailProducts bed={bed[i]} i={1 + i} key={i}></DetailProducts>
+            <DetailProducts bed={bed[i]} i={i} key={i}></DetailProducts>
           );
         })}
       </div>

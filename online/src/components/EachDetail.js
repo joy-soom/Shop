@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import "../styles/Eachdetail.scss";
 
 function EachDetail(props) {
   let [modal, setModal] = useState(true);
@@ -11,13 +12,13 @@ function EachDetail(props) {
   }, []);
 
   let { id } = useParams();
-  console.log(id);
+  // console.log(id);
   let clickProduct = props.bed.find(function (x) {
     return x.id == id;
   });
   //let clickProduct = props.bed.find(x => x.id ==id)랑 같다 이게 신문법
 
-  let [탭, 탭변경] = useState(0); //true or false저장도가능하지만 숫자로 해줘야 3가지 내용을 보여줘야 하는 상황에선 더 자유롭다
+  let [tap, setTap] = useState(0); //true or false저장도가능하지만 숫자로 해줘야 3가지 내용을 보여줘야 하는 상황에선 더 자유롭다
   //1이면1번째 내용이 2이면 2번째 내용을 보여준다
 
   return (
@@ -48,7 +49,7 @@ function EachDetail(props) {
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              탭변경(0);
+              setTap(0);
             }}
             eventKey="link0"
           >
@@ -58,7 +59,7 @@ function EachDetail(props) {
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              탭변경(1);
+              setTap(1);
             }}
             eventKey="link1"
           >
@@ -68,7 +69,7 @@ function EachDetail(props) {
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              탭변경(2);
+              setTap(2);
             }}
             eventKey="link2"
           >
@@ -76,23 +77,28 @@ function EachDetail(props) {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <TabContent 탭={탭} />
+      <TabContent tap={tap} />
 
       {/*  {tap == 0 ? <div>내용0</div> : null} 같은 삼항연산자 말고 일반IF 조건문 쓰려면?? HTML안에서는 if문 못쓴다 html 바깥에서 사용가능
        */}
     </div>
   );
 }
+function TabContent({ tap }) {
+  let [fade, setFade] = useState("");
 
-function TabContent(탭) {
-  //컴포넌트는 return 써주는거 필수 if if if 도 되고  if else if else if도된다
-  if (탭 === 0) {
-    return <div>내용0</div>;
-  } if (탭 === 1) {
-    return <div>내용1</div>;
-  } if (탭 === 2) {
-    return <div>내용2</div>;
-  }
+  useEffect(() => {
+    setTimeout(() => {
+      setFade("end");
+    }, 100);
+    return () => {
+      setFade("");
+    };
+  }, [tap]);
+  return (
+    <div className={"start " + fade}>
+      {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tap]}
+    </div>
+  );
 }
-
 export default EachDetail;

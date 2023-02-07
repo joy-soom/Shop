@@ -18,3 +18,14 @@ $height-md: 300px;
   padding: 8px 25px;
   border-radius: 10px;
 }
+
+//animation
+@mixin start {
+  opacity: 0;
+}
+
+@mixin end {
+  opacity: 1;
+  transition: opacity 0.5s;
+  //opacity가 변경될때 0.5초에 걸쳐서 변경해주세요
+}

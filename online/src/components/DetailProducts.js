@@ -15,7 +15,7 @@ function DetailProducts(props) {
         <div className="detailDescription col-md-6">
           <h4 className="pt-5">{props.bed.title}</h4>
           <p>{props.bed.content}</p>
-          <p>{props.bed.price}</p>
+          <p>{props.bed.price}$</p>
           <button className="order">주문하기</button>
         </div>
       </div>

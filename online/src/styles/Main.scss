@@ -32,6 +32,11 @@
   margin-bottom: 0;
 }
 
+.moreBtn {
+  font-weight: 600;
+  @include button($color-secondary-200, $color-primary-300);
+}
+
 @keyframes word {
   from {
     opacity: 0;

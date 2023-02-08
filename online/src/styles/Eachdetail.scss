@@ -6,3 +6,34 @@
 .end {
   @include end;
 }
+
+.notice {
+  margin-top: 20px;
+}
+.shipment,
+.noticeIssue {
+  margin-top: 50px;
+}
+.noticeImg {
+  background-position: center;
+}
+.detailCut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 500px;
+}
+.detailTable {
+  margin-top: 70px;
+}
+// .detailTableContent {
+//   table-layout: fixed;
+  
+// }
+.productContent {
+  word-break: break-all;
+}
+td {
+  width: 33%;
+}

@@ -11,6 +11,15 @@ function EachDetail(props) {
     }, 2000);
   }, []);
 
+  let [fade2, setFade2] = useState("");
+
+  useEffect(() => {
+    setFade2("end");
+    return () => {
+      setFade2("");
+    };
+  }, []);
+
   let { id } = useParams();
   // console.log(id);
   let clickProduct = props.bed.find(function (x) {
@@ -22,7 +31,7 @@ function EachDetail(props) {
   //1이면1번째 내용이 2이면 2번째 내용을 보여준다
 
   return (
-    <div className="container">
+    <div className={"container start " + fade2}>
       {modal == true ? (
         <div className="alert alert-warning">2초 이내 구매시 할인</div>
       ) : null}
@@ -53,7 +62,7 @@ function EachDetail(props) {
             }}
             eventKey="link0"
           >
-            버튼0
+            상세페이지
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
@@ -63,7 +72,7 @@ function EachDetail(props) {
             }}
             eventKey="link1"
           >
-            버튼1
+            문의사항
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
@@ -73,18 +82,18 @@ function EachDetail(props) {
             }}
             eventKey="link2"
           >
-            버튼2
+            배송안내
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <TabContent tap={tap} />
+      <TabContent tap={tap} clickProduct={clickProduct} id={id} />
 
       {/*  {tap == 0 ? <div>내용0</div> : null} 같은 삼항연산자 말고 일반IF 조건문 쓰려면?? HTML안에서는 if문 못쓴다 html 바깥에서 사용가능
        */}
     </div>
   );
 }
-function TabContent({ tap }) {
+function TabContent({ tap, id, clickProduct }) {
   let [fade, setFade] = useState("");
 
   useEffect(() => {
@@ -97,8 +106,76 @@ function TabContent({ tap }) {
   }, [tap]);
   return (
     <div className={"start " + fade}>
-      {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tap]}
+      {
+        [
+          <div>
+            <h3 className="notice">상세페이지</h3>
+            <br />
+            <br />
+            <div className="detailCut">
+              <img
+                className="noticeImg"
+                src={process.env.PUBLIC_URL + "/image/bed" + id + ".jpg"}
+                width="400px"
+              />
+              <div className="detailTable">
+              <Table clickProduct={clickProduct} />
+              </div>
+            </div>
+          </div>,
+          <div>
+            <h3 className="notice">문의사항</h3>
+            <div className="noticeIssue">
+              <p>상품 문의와 환불, 교환 및 기타 문의 사항이 있으실 경우 </p>
+              <p>아래 연락처로 문의 주시면 친절히 답변 드리겠습니다.</p>
+              <p>selecshop@gmail.com</p>
+              <p>📞02-111-222</p>
+              <img
+                src={process.env.PUBLIC_URL + "/image/question.jpg"}
+                alt="문의"
+                height="400px"
+              />
+            </div>
+          </div>,
+          <div>
+            <h3 className="notice">배송 안내</h3>
+            <div className="shipment">
+              <p>평균적인 배송시간은 주문 접수 후 2~3일 이후 출발 하게 되며</p>
+              <p>
+                영업일 기준 (주말 제외) 약 5~7일 정도 소요 됩니다. 참고
+                부탁드립니다.
+              </p>
+              <img
+                src={process.env.PUBLIC_URL + "/image/ship.jpg"}
+                alt="배송"
+                height="400px"
+              />
+            </div>
+          </div>,
+        ][tap]
+      }
     </div>
+  );
+}
+
+function Table({ clickProduct }) {
+  return (
+    <table className="detailTableContent" border={1} cellPadding={5} cellSpacing={10} >
+      <thead>
+        <tr  border={1}>
+          <th>상품명</th>
+          <th>상세내용</th>
+          <th>가격</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+        <td>{clickProduct.title}</td>
+        <td className="productContent">{clickProduct.content}</td>
+        <td>{clickProduct.price}$</td>
+        </tr>
+      </tbody>
+    </table>
   );
 }
 export default EachDetail;

@@ -1,10 +1,12 @@
 import MainProducts from "../components/MainProducts";
-import "../styles/App.scss";
+import "../styles/Main.scss";
 import axios from "axios";
 import { useState } from "react";
 
 const MainPage = ({ bed, setBed }) => {
   // let [beds, setBeds] = useState(bed);
+  let [click, setClick] = useState(true);
+
   return (
     <>
       <div className="mainBg">
@@ -20,7 +22,10 @@ const MainPage = ({ bed, setBed }) => {
         </div>
       </div>
       <button
+        className="moreBtn"
+        click={click}
         onClick={() => {
+          setClick(!click);
           axios
             .get("https://codingapple1.github.io/shop/data2.json")
             .then((결과) => {
@@ -33,10 +38,14 @@ const MainPage = ({ bed, setBed }) => {
             });
         }}
       >
-        더보기
+        more
       </button>
     </>
   );
 };
+
+// {
+//   click == false ? "" : <button className="moreBtn"></button>;
+// }
 
 export default MainPage;

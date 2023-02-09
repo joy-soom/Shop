@@ -1,10 +1,9 @@
 import MainProducts from "../components/MainProducts";
 import "../styles/Main.scss";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MainPage = ({ bed, setBed }) => {
-  // let [beds, setBeds] = useState(bed);
   let [click, setClick] = useState(true);
 
   return (
@@ -22,10 +21,9 @@ const MainPage = ({ bed, setBed }) => {
         </div>
       </div>
       <button
-        className="moreBtn"
-        click={click}
+        className={"moreBtn " + (click ? "show" : "hidden")}
         onClick={() => {
-          setClick(!click);
+          setClick(false);
           axios
             .get("https://codingapple1.github.io/shop/data2.json")
             .then((결과) => {
@@ -43,9 +41,5 @@ const MainPage = ({ bed, setBed }) => {
     </>
   );
 };
-
-// {
-//   click == false ? "" : <button className="moreBtn"></button>;
-// }
 
 export default MainPage;

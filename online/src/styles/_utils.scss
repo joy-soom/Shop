@@ -30,3 +30,13 @@ $height-md: 300px;
   transition: opacity 0.5s;
   //opacity가 변경될때 0.5초에 걸쳐서 변경해주세요
 }
+
+//style
+
+@mixin hidden {
+  display: none;
+}
+
+@mixin show {
+  display: block;
+}

@@ -34,7 +34,16 @@
 
 .moreBtn {
   font-weight: 600;
+  margin: auto;
   @include button($color-secondary-200, $color-primary-300);
+}
+
+.hidden {
+  @include hidden;
+}
+
+.show {
+  @include show;
 }
 
 @keyframes word {

@@ -50,8 +50,11 @@ let cart = createSlice({
       });
       state[번호].count++;
     },
-    cartMinus(state, a) {
-      state[a.payload].count--;
+    cartMinus(state, action) {
+      let 마이너스 = state.findIndex((a) => {
+        return a.id === action.payload;
+      });
+      state[마이너스].count--;
     },
     addItem(state, action) {
       state.unshift(action.payload);

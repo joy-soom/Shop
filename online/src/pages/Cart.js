@@ -6,7 +6,7 @@ import "../styles/Cart.scss";
 function Cart() {
   let dispatch = useDispatch();
   let state = useSelector((state) => state);
-  console.log(state.cart);
+  // console.log(state.cart);
   //4.useDispatch : dispatch란 store.js로 요청을 보내주는 함수이다
 
   return (
@@ -29,7 +29,11 @@ function Cart() {
                 <button
                   className="cartBtn"
                   onClick={() => {
-                    dispatch(cartMinus(state.cart[i].id));
+                    {
+                      state.cart[i].count == 1
+                        ? alert("1개 이상 구매가 가능 합니다")
+                        : dispatch(cartMinus(state.cart[i].id));
+                    }
                   }}
                 >
                   -
@@ -39,7 +43,11 @@ function Cart() {
                 <button
                   className="cartBtn"
                   onClick={() => {
-                    dispatch(cartPlus(state.cart[i].id));
+                    {
+                      state.cart[i].count === 9
+                        ? alert("구매 가능 수량은 최대 9개 입니다")
+                        : dispatch(cartPlus(state.cart[i].id));
+                    }
                   }}
                 >
                   +

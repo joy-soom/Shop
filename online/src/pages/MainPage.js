@@ -1,7 +1,7 @@
 import MainProducts from "../components/MainProducts";
 import "../styles/Main.scss";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const MainPage = ({ bed, setBed }) => {
   let [click, setClick] = useState(true);

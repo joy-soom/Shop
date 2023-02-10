@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import { addItem } from "../store.js";
+import { useDispatch } from "react-redux";
 import "../styles/Eachdetail.scss";
 
 function EachDetail(props) {
+  let dispatch = useDispatch();
   let [modal, setModal] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -46,8 +49,22 @@ function EachDetail(props) {
         <div>
           <h4 className="pt-5">{clickProduct.title}</h4>
           <p>{clickProduct.content}</p>
-          <p>{clickProduct.price}$</p>
-          <button className="btn btn-danger">주문하기</button>
+          <p>{clickProduct.price}원</p>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              dispatch(
+                addItem({
+                  id: clickProduct.id,
+                  name: clickProduct.title,
+                  price: clickProduct.price,
+                  count: 1,
+                })
+              );
+            }}
+          >
+            주문하기
+          </button>
         </div>
       </div>
 
@@ -87,9 +104,6 @@ function EachDetail(props) {
         </Nav.Item>
       </Nav>
       <TabContent tap={tap} clickProduct={clickProduct} id={id} />
-
-      {/*  {tap == 0 ? <div>내용0</div> : null} 같은 삼항연산자 말고 일반IF 조건문 쓰려면?? HTML안에서는 if문 못쓴다 html 바깥에서 사용가능
-       */}
     </div>
   );
 }
@@ -119,7 +133,7 @@ function TabContent({ tap, id, clickProduct }) {
                 width="400px"
               />
               <div className="detailTable">
-              <Table clickProduct={clickProduct} />
+                <Table clickProduct={clickProduct} />
               </div>
             </div>
           </div>,
@@ -133,7 +147,7 @@ function TabContent({ tap, id, clickProduct }) {
               <img
                 src={process.env.PUBLIC_URL + "/image/question.jpg"}
                 alt="문의"
-                height="400px"
+                height="350px"
               />
             </div>
           </div>,
@@ -160,19 +174,24 @@ function TabContent({ tap, id, clickProduct }) {
 
 function Table({ clickProduct }) {
   return (
-    <table className="detailTableContent" border={1} cellPadding={5} cellSpacing={10} >
+    <table
+      className="detailTableContent"
+      border={1}
+      cellPadding={5}
+      cellSpacing={10}
+    >
       <thead>
-        <tr  border={1}>
+        <tr>
           <th>상품명</th>
           <th>상세내용</th>
           <th>가격</th>
         </tr>
       </thead>
       <tbody>
-        <tr >
-        <td>{clickProduct.title}</td>
-        <td className="productContent">{clickProduct.content}</td>
-        <td>{clickProduct.price}$</td>
+        <tr>
+          <td>{clickProduct.title}</td>
+          <td className="productContent">{clickProduct.content}</td>
+          <td>{clickProduct.price}$</td>
         </tr>
       </tbody>
     </table>

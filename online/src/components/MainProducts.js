@@ -14,7 +14,7 @@ function MainProducts(props) {
         alt="침대"
       />
       <div className="productName">{props.bed.title}</div>{" "}
-      <p>{props.bed.price}$</p>
+      <p>{props.bed.price}원</p>
     </div>
   );
 }

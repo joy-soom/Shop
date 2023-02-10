@@ -1,0 +1,43 @@
+@import "utils";
+
+thead {
+  border-bottom: solid rgb(80, 79, 79) 3px;
+}
+
+td {
+  width: 25%;
+}
+.cartFont {
+  font-weight: 600;
+}
+
+.cartBtn {
+  border: none;
+  width: 30px;
+  background-color: $color-secondary-200;
+}
+
+.productAmount,
+.finalPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+width: 79%;
+
+}
+
+.productAmount {
+  height: 90px;
+}
+
+h4 {
+  font-weight: 700;
+}
+
+.totalPrice {
+  color: rgb(241, 193, 87);
+  font-weight: 600;
+  font-size: 23px;
+}
+

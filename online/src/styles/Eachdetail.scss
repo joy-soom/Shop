@@ -27,10 +27,10 @@
 .detailTable {
   margin-top: 70px;
 }
-// .detailTableContent {
-//   table-layout: fixed;
-  
-// }
+table {
+  border-width: 0;
+}
+
 .productContent {
   word-break: break-all;
 }

@@ -2,6 +2,7 @@ import DetailProducts from "../components/DetailProducts";
 
 
 const Detail = ({bed}) => {
+
   return (
     <div className="container">
       <div className="detailBodyColor row">

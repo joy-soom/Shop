@@ -4,7 +4,7 @@ let data = [
     title: "Beige and Purple",
     content:
       "est natus enim nihil est dolore omnis voluptatem omnis occaecati quod ullam atnvoluptatem e",
-    price: "1000",
+    price: "150000",
 
   },
 
@@ -13,7 +13,7 @@ let data = [
     title: "Soft Mood",
     content:
       "harum non quasi et  rationenharum arinventore cupiditate oluptates magni quo et",
-    price: "1200",
+    price: "180000",
   
   },
 
@@ -22,7 +22,7 @@ let data = [
     title: "Brown and Beige",
     content:
       "sapiente assumenda tinctio omnisnet occaecati aspernatur enim ipsam minus",
-    price: "1150",
+    price: "200000",
    
   },
 

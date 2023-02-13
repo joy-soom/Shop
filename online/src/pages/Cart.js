@@ -1,16 +1,18 @@
 import { Table } from "react-bootstrap";
+
 import { useDispatch, useSelector } from "react-redux";
-import { cartPlus, cartMinus } from "../store.js";
+import { cartPlus, cartMinus, totalPrice, deleteItem } from "../store.js";
 import "../styles/Cart.scss";
 
 function Cart() {
+
   let dispatch = useDispatch();
   let state = useSelector((state) => state);
   // console.log(state.cart);
   //4.useDispatch : dispatch란 store.js로 요청을 보내주는 함수이다
 
   return (
-    <div>
+    <div className="cartBox">
       <Table>
         <thead>
           <tr>
@@ -18,6 +20,7 @@ function Cart() {
             <th>상품명</th>
             <th>수량</th>
             <th>금액</th>
+            <th>상품 삭제</th>
           </tr>
         </thead>
         <tbody>
@@ -55,6 +58,21 @@ function Cart() {
               </td>
               <td className="cartFont">
                 {state.cart[i].price} {""}원
+                {/*  {dispatch(totalPrice(state.cart[i].id))}  */}
+              </td>
+              <td>
+                <button
+                  className="deletBtn"
+                  onClick={() => {
+                    dispatch(deleteItem(
+                      
+
+
+                    ));
+                  }}
+                >
+                  delete
+                </button>
               </td>
             </tr>
           ))}

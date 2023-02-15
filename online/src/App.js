@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom"; //react dom에서 가져와서 쓸 컴포넌트들
 // import DetailProducts from "./components/DetailProducts";
@@ -14,6 +14,9 @@ import EachDetail from "./components/EachDetail.js";
 import Cart from "./pages/Cart.js";
 
 function App() {
+
+  
+
   let [bed, setBed] = useState(data);
   let navigate = useNavigate(); // <- 1.페이지 이동도와주는 usenavigate
 

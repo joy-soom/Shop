@@ -13,6 +13,7 @@ import "../styles/Cart.scss";
 function Cart() {
   let dispatch = useDispatch();
   let state = useSelector((state) => state);
+  // let [ckeckItems, setChechItems] = useState([]);
 
   //4.useDispatch : dispatch란 store.js로 요청을 보내주는 함수이다
   // let [총금액, 합친총금액] = useState(0);
@@ -22,24 +23,45 @@ function Cart() {
   //   };
   // }, state.cart.count);
 
-
+  //   let [fade2, setFade2] = useState("");
+  // useEffect (() => {
+  //   setFade2("end");
+  //   return () => {
+  //     ""
+  //   }
+  // })
+  if (state.cart.length === 0) {
+    return (
+      <div>
+        <div className="empty">장바구니가 비어있습니다.</div>
+      </div>
+    )
+  }
 
   return (
     <div className="cartBox">
+      <br />
+      <br />
+
       <Table>
         <thead>
           <tr>
-            <th>상품 고유번호</th>
-            <th>상품명</th>
-            <th>수량</th>
-            <th>금액</th>
-            <th>상품 삭제</th>
+            <th>
+              <input type="checkbox" />
+            </th>
+            <th>name</th>
+            <th>count</th>
+            <th>price</th>
+            <th>delete</th>
           </tr>
         </thead>
         <tbody>
           {state.cart.map((a, i) => (
             <tr key={i}>
-              <td>{state.cart[i].id}</td>
+              <td>
+                {/* {state.cart[i].id} */}
+                <input type="checkbox" />
+              </td>
               <td>{state.cart[i].name}</td>
               <td>
                 <button
@@ -76,33 +98,35 @@ function Cart() {
                 <button
                   className="deletBtn"
                   onClick={() => {
-                   dispatch(deleteItem());
+                    console.log(state.cart.length);
+                    dispatch(deleteItem());
                     
+                    // {
+                    //   state.cart.id.length === 0 ? (
+                    //     <div className="alert alert-warning">
+                    //       2초 이내 구매시 할인
+                    //     </div>
+                    //   ) : null;
+                    // }
                   }}
                 >
-                  delete
+                  x
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <div className="productAmount">
-        <div className="productPlus">
-          <div>상품 합계</div>
-          <br />
-          <div>배송비</div>
-        </div>
-        <div className="allPrice">
-          <div>원</div>
-          <br />
-          <div>5000원</div>
-        </div>
+      <div>
+        <button className="selectDelete">Selected Delete</button>
       </div>
-      <hr />
-      <div className="finalPrice">
-        <h4>총 결제금액</h4>
-        <p className="totalPrice">3462362 원</p>
+      <div className="productAmount">
+        <div>
+          <div>Cart Total</div>
+        </div>
+        <div>
+          <div>원</div>
+        </div>
       </div>
     </div>
   );

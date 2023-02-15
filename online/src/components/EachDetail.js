@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import "../styles/Eachdetail.scss";
 
 function EachDetail(props) {
+
+
+
   let state = useSelector((state) => state);
   let dispatch = useDispatch();
   let [modal, setModal] = useState(true);
@@ -33,6 +36,10 @@ function EachDetail(props) {
 
   let [tap, setTap] = useState(0); //true or false저장도가능하지만 숫자로 해줘야 3가지 내용을 보여줘야 하는 상황에선 더 자유롭다
   //1이면1번째 내용이 2이면 2번째 내용을 보여준다
+
+
+   
+
 
   return (
     <div className={"container start " + fade2}>
@@ -192,7 +199,7 @@ function Table({ clickProduct }) {
         <tr>
           <td>{clickProduct.title}</td>
           <td className="productContent">{clickProduct.content}</td>
-          <td>{clickProduct.price}$</td>
+          <td>{clickProduct.price}원</td>
         </tr>
       </tbody>
     </table>

@@ -1,15 +1,28 @@
 import { Table } from "react-bootstrap";
-
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartPlus, cartMinus, totalPrice, deleteItem } from "../store.js";
+import {
+  cartPlus,
+  cartMinus,
+  totalPrice,
+  deleteItem,
+  allPrice,
+} from "../store.js";
 import "../styles/Cart.scss";
 
 function Cart() {
-
   let dispatch = useDispatch();
   let state = useSelector((state) => state);
-  // console.log(state.cart);
+
   //4.useDispatch : dispatch란 store.js로 요청을 보내주는 함수이다
+  // let [총금액, 합친총금액] = useState(0);
+  // useEffect(() => {
+  //   return () => {
+
+  //   };
+  // }, state.cart.count);
+
+
 
   return (
     <div className="cartBox">
@@ -57,18 +70,14 @@ function Cart() {
                 </button>
               </td>
               <td className="cartFont">
-                {state.cart[i].price} {""}원
-                {/*  {dispatch(totalPrice(state.cart[i].id))}  */}
+                {state.cart[i].price * state.cart[i].count} {""}원
               </td>
               <td>
                 <button
                   className="deletBtn"
                   onClick={() => {
-                    dispatch(deleteItem(
-                      
-
-
-                    ));
+                   dispatch(deleteItem());
+                    
                   }}
                 >
                   delete
@@ -85,9 +94,9 @@ function Cart() {
           <div>배송비</div>
         </div>
         <div className="allPrice">
-          <div>500000원</div>
+          <div>원</div>
           <br />
-          <div>500000원</div>
+          <div>5000원</div>
         </div>
       </div>
       <hr />

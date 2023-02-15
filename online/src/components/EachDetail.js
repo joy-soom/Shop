@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { addItem } from "../store.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/Eachdetail.scss";
 
 function EachDetail(props) {
+  let state = useSelector((state) => state);
   let dispatch = useDispatch();
   let [modal, setModal] = useState(true);
   useEffect(() => {
@@ -63,7 +64,7 @@ function EachDetail(props) {
               );
             }}
           >
-            주문하기
+            장바구니 담기
           </button>
         </div>
       </div>

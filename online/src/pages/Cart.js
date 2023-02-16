@@ -13,29 +13,38 @@ import "../styles/Cart.scss";
 function Cart() {
   let dispatch = useDispatch();
   let state = useSelector((state) => state);
-  // let [ckeckItems, setChechItems] = useState([]);
+  let [checkItems, setCheckItems] = useState([]); //체크된 아이템 담을 state
 
-  //4.useDispatch : dispatch란 store.js로 요청을 보내주는 함수이다
-  // let [총금액, 합친총금액] = useState(0);
-  // useEffect(() => {
-  //   return () => {
+  //ㅊㅔ크박스 개별
+  const selectChecked = (checked, id) => {
+    if (checked) {
+      setCheckItems([...checkItems, id]);
+      console.log("선택 체크");
+    } else {
+      setCheckItems(checkItems.filter((el) => el !== id));
+      console.log("선택 체크해제");
+    }
+  };
 
-  //   };
-  // }, state.cart.count);
+  //체크박스 전체
+  const allChecked = (checked) => {
+    if (checked) {
+      const itemList = [];
+      state.cart.forEach((el) => itemList.push(el.id));
+      setCheckItems(itemList);
+      console.log('전체선택')
+    } else {
+      setCheckItems([]);
+      console.log('전체선택 해제')
+    }
+  };
 
-  //   let [fade2, setFade2] = useState("");
-  // useEffect (() => {
-  //   setFade2("end");
-  //   return () => {
-  //     ""
-  //   }
-  // })
   if (state.cart.length === 0) {
     return (
       <div>
         <div className="empty">장바구니가 비어있습니다.</div>
       </div>
-    )
+    );
   }
 
   return (
@@ -47,7 +56,9 @@ function Cart() {
         <thead>
           <tr>
             <th>
-              <input type="checkbox" />
+              <input type="checkbox" name="all-checked"
+              onChange={(e) => allChecked(e.target.checked)}
+              checked={checkItems.length === state.cart.length ? true : false} />
             </th>
             <th>name</th>
             <th>count</th>
@@ -60,7 +71,14 @@ function Cart() {
             <tr key={i}>
               <td>
                 {/* {state.cart[i].id} */}
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  name="selece-checked"
+                  onChange={(e) =>
+                    selectChecked(e.target.checked, state.cart[i].id)
+                  }
+                  checked={checkItems.includes(state.cart[i].id) ? true : false}
+                />
               </td>
               <td>{state.cart[i].name}</td>
               <td>
@@ -100,14 +118,6 @@ function Cart() {
                   onClick={() => {
                     console.log(state.cart.length);
                     dispatch(deleteItem());
-                    
-                    // {
-                    //   state.cart.id.length === 0 ? (
-                    //     <div className="alert alert-warning">
-                    //       2초 이내 구매시 할인
-                    //     </div>
-                    //   ) : null;
-                    // }
                   }}
                 >
                   x

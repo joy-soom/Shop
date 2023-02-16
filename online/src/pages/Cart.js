@@ -1,13 +1,7 @@
 import { Table } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  cartPlus,
-  cartMinus,
-  totalPrice,
-  deleteItem,
-  allPrice,
-} from "../store.js";
+import { cartPlus, cartMinus, deleteItem } from "../store.js";
 import "../styles/Cart.scss";
 
 function Cart() {
@@ -15,7 +9,7 @@ function Cart() {
   let state = useSelector((state) => state);
   let [checkItems, setCheckItems] = useState([]); //체크된 아이템 담을 state
 
-  //ㅊㅔ크박스 개별
+  //체크박스 개별
   const selectChecked = (checked, id) => {
     if (checked) {
       setCheckItems([...checkItems, id]);
@@ -32,11 +26,21 @@ function Cart() {
       const itemList = [];
       state.cart.forEach((el) => itemList.push(el.id));
       setCheckItems(itemList);
-      console.log('전체선택')
+      console.log("전체선택");
     } else {
       setCheckItems([]);
-      console.log('전체선택 해제')
+      console.log("전체선택 해제");
     }
+  };
+
+
+  //총액 구하기
+  const orderPrice = () => {
+    let sum = 0;
+    for (let i = 0; i < state.cart.length; i++) {
+      sum += state.cart[i].price * state.cart[i].count;
+    }
+    return sum;
   };
 
   if (state.cart.length === 0) {
@@ -47,6 +51,8 @@ function Cart() {
     );
   }
 
+  const allPrice = state.cart.price * state.cart.count;
+
   return (
     <div className="cartBox">
       <br />
@@ -56,9 +62,12 @@ function Cart() {
         <thead>
           <tr>
             <th>
-              <input type="checkbox" name="all-checked"
-              onChange={(e) => allChecked(e.target.checked)}
-              checked={checkItems.length === state.cart.length ? true : false} />
+              <input
+                type="checkbox"
+                name="all-checked"
+                onChange={(e) => allChecked(e.target.checked)}
+                checked={checkItems.length === state.cart.length ? true : false}
+              />
             </th>
             <th>name</th>
             <th>count</th>
@@ -70,7 +79,6 @@ function Cart() {
           {state.cart.map((a, i) => (
             <tr key={i}>
               <td>
-                {/* {state.cart[i].id} */}
                 <input
                   type="checkbox"
                   name="selece-checked"
@@ -116,7 +124,6 @@ function Cart() {
                 <button
                   className="deletBtn"
                   onClick={() => {
-                    console.log(state.cart.length);
                     dispatch(deleteItem());
                   }}
                 >
@@ -127,15 +134,16 @@ function Cart() {
           ))}
         </tbody>
       </Table>
+
       <div>
         <button className="selectDelete">Selected Delete</button>
       </div>
       <div className="productAmount">
         <div>
-          <div>Cart Total</div>
+          <div className="orderFont">Cart Total</div>
         </div>
         <div>
-          <div>원</div>
+          <div className="orderFont">{orderPrice()}원</div>
         </div>
       </div>
     </div>

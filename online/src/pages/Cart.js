@@ -66,12 +66,7 @@ function Cart() {
   return (
     <div className="cartBox">
       <br />
-      <div className="freeShip">
-        <button className="selectDelete" onClick={() =>deleteSelected(state.cart.id) }>
-          Selected Delete
-        </button>
-        {/* <p className="freeWord">무료배송</p> */}
-      </div>
+      
 
       <Table>
         <thead>
@@ -150,6 +145,13 @@ function Cart() {
         </tbody>
       </Table>
       <br />
+
+      <div className="freeShip">
+        <button className="selectDelete" onClick={() =>deleteSelected(state.cart.id) }>
+          Selected Delete
+        </button>
+        {/* <p className="freeWord">무료배송</p> */}
+      </div>
 
       <div className="productAmount">
         <div>

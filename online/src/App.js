@@ -8,15 +8,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import data from "./data.js";
 //외부 라이브러리는 필요할때 마다 검색해서 쓰면됨
 import NotFound from "./pages/NotFound";
-import Detail from "./pages/Detail.js";
 import MainPage from "./pages/MainPage.js";
-import EachDetail from "./components/EachDetail.js";
+import EachDetail from "./pages/EachDetail.js";
 import Cart from "./pages/Cart.js";
 
 function App() {
-
-  
-
   let [bed, setBed] = useState(data);
   let navigate = useNavigate(); // <- 1.페이지 이동도와주는 usenavigate
 
@@ -35,13 +31,6 @@ function App() {
             </Nav.Link>
             <Nav.Link
               onClick={() => {
-                navigate("/detail");
-              }}
-            >
-              All
-            </Nav.Link>
-            <Nav.Link
-              onClick={() => {
                 navigate("/cart");
               }}
             >
@@ -53,12 +42,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<MainPage bed={bed} setBed={setBed} />} />
-        <Route path="/detail" element={<Detail bed={bed} />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/eachDetail/:id" element={<EachDetail bed={bed} />} />
         {/* :id 는 아무거나 라는 뜻 그래서eachDetail뒤에 뭘 쓰던 eachDetail페이지 보여줌 
         (참고) URL파라미터 만들 때 - 여러개 가능*/}
-        <Route path="*" element={<NotFound />} />
-
-        <Route path="/eachDetail/:id" element={<EachDetail bed={bed} />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>

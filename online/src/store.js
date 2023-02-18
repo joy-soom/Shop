@@ -56,22 +56,20 @@ let cart = createSlice({
       });
       state[마이너스].count--;
     },
-    addItem(state, action) {
-      state.unshift(action.payload);
-    },
     deleteItem(state, action) {
       state = state.splice(action.payload, 1);
     },
-
+    //장바구니 중복 방지
     addList(state, action) {
       const index = state.findIndex((e) => e.id === action.payload.id);
       if (index > -1) {
         // state[index].count++;
-        alert('장바구니에 담겨 있는 상품입니다.')
+        alert("장바구니에 담겨 있는 상품입니다.");
       } else {
         state.push(action.payload);
       }
     },
+
     removeList(state, action) {
       const index = state.findIndex((e) => e.id === action.payload.id);
       console.log(index);
@@ -94,7 +92,6 @@ export default configureStore({
 export let {
   cartPlus,
   cartMinus,
-  addItem,
   totalPrice,
   deleteItem,
   allPrice,

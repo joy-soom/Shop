@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
-import { addItem } from "../store.js";
+import { addList } from "../store.js";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/Eachdetail.scss";
 
@@ -72,7 +72,7 @@ function EachDetail(props) {
               //   clickProduct.count +1
               // }
               dispatch(
-                addItem({
+                addList({
                   id: clickProduct.id,
                   name: clickProduct.title,
                   price: clickProduct.price,

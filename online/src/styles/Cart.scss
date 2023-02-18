@@ -26,8 +26,16 @@ td {
   border: none;
   background-color: $color-secondary-300;
 }
-.selectDelete {
-  margin-left:-80%;
+.freeShip {
+  display: flex; 
+  align-items: center;
+  width: 100%;
+
+}
+.freeWord {
+  position: absolute;
+  margin-top: 15px;
+  margin-right: -300px;
 }
 
 .cartBtn {

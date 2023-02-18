@@ -1,7 +1,7 @@
 import { Table } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartPlus, cartMinus, deleteItem } from "../store.js";
+import { cartPlus, cartMinus, deleteItem,removeList } from "../store.js";
 import "../styles/Cart.scss";
 
 function Cart() {
@@ -33,7 +33,6 @@ function Cart() {
     }
   };
 
-
   //총액 구하기
   const orderPrice = () => {
     let sum = 0;
@@ -43,6 +42,7 @@ function Cart() {
     return sum;
   };
 
+  // 장바구니 비었을 때 보여줄 화면
   if (state.cart.length === 0) {
     return (
       <div>
@@ -51,12 +51,27 @@ function Cart() {
     );
   }
 
-  const allPrice = state.cart.price * state.cart.count;
+  // 체크 박스 상품id값만 삭제하기
+  const deleteSelected = () => {
+    if (checkItems.length === 0) {
+      alert("삭제할 상품을 선택해주세요");
+      console.log('선택할상품 없음')
+    } else {
+      setCheckItems(checkItems.filter((el) => !checkItems.includes(el.id)));
+      console.log('선택 상품 있음')
+    }
+  };
+
 
   return (
     <div className="cartBox">
       <br />
-      <br />
+      <div className="freeShip">
+        <button className="selectDelete" onClick={() =>deleteSelected(state.cart.id) }>
+          Selected Delete
+        </button>
+        {/* <p className="freeWord">무료배송</p> */}
+      </div>
 
       <Table>
         <thead>
@@ -134,10 +149,8 @@ function Cart() {
           ))}
         </tbody>
       </Table>
+      <br />
 
-      <div>
-        <button className="selectDelete">Selected Delete</button>
-      </div>
       <div className="productAmount">
         <div>
           <div className="orderFont">Cart Total</div>

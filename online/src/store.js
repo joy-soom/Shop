@@ -62,6 +62,23 @@ let cart = createSlice({
     deleteItem(state, action) {
       state = state.splice(action.payload, 1);
     },
+
+    addList(state, action) {
+      const index = state.findIndex((e) => e.id === action.payload.id);
+      if (index > -1) {
+        // state[index].count++;
+        alert('장바구니에 담겨 있는 상품입니다.')
+      } else {
+        state.push(action.payload);
+      }
+    },
+    removeList(state, action) {
+      const index = state.findIndex((e) => e.id === action.payload.id);
+      console.log(index);
+      if (index > -1) {
+        state.splice(index, 1);
+      }
+    },
   },
 });
 
@@ -74,5 +91,13 @@ export default configureStore({
   },
 });
 
-export let { cartPlus, cartMinus, addItem, totalPrice, deleteItem, allPrice } =
-  cart.actions;
+export let {
+  cartPlus,
+  cartMinus,
+  addItem,
+  totalPrice,
+  deleteItem,
+  allPrice,
+  addList,
+  removeList,
+} = cart.actions;

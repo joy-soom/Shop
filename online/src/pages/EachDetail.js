@@ -39,22 +39,31 @@ function EachDetail(props) {
   return (
     <div className={"container start " + fade2}>
       {modal == true ? (
-        <div className="alert alert-warning">2초 이내 구매시 할인</div>
+        <div className="alert">2초 이내 구매시 할인</div>
       ) : null}
-      <div className="row">
-        <div>
+      <div className="detailContent">
+        <div className="imgContent">
           <img
             src={process.env.PUBLIC_URL + "/image/bed" + id + ".jpg"}
             width="100%"
           />
         </div>
+<br />
+<br />
+{/* <div>
 
-        <div>
+          <div className="cartInfo">
+
+
+          </div>
+        </div> */}
+        <div className="detailText">
           <h4 className="pt-5">{clickProduct.title}</h4>
           <p>{clickProduct.content}</p>
-          <p>{clickProduct.price}원</p>
+          <p>{clickProduct.price.toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
           <button
-            className="btn btn-danger"
+            className="cardOrderBtn"
             onClick={() => {
               dispatch(
                 addList({
@@ -66,10 +75,14 @@ function EachDetail(props) {
               );
             }}
           >
-            장바구니 담기
+            담기
           </button>
         </div>
+
+        
       </div>
+      <br />
+      <br />
 
       <Nav variant="tabs" defaultActiveKey="link0">
         {/* defaultActiveKey="link0" 얘는 옵션인데 해당페이지를 열었을 때

@@ -37,3 +37,35 @@ table {
 td {
   width: 33%;
 }
+.detailContent {
+  display: flex;
+  margin-top: 10px;
+}
+.detailText {
+  margin: auto;
+  width: 50%;
+}
+
+.imgContent {
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  background-color: $color-secondary-300;
+  border-radius: 50px 0 50px 0;
+}
+.cardOrderBtn {
+  @include button($color-secondary-100, $color-primary-400);
+  border: 3px solid $color-primary-300;
+}
+
+.cartInfo {
+  width: 350px;
+  height: 150px;
+  border: 1px solid black;
+  position: absolute;
+  margin: auto;
+}
+
+.alert {
+  background-color: $color-secondary-200;
+}

@@ -37,9 +37,16 @@ img {
 }
 
 .moreBtn {
-  font-weight: 600;
+  font-size: 22px;
   margin: auto;
-  @include button($color-secondary-200, $color-primary-300);
+  @include button($color-secondary-100, $color-primary-400);
+  border: 3px solid $color-secondary-400;
+ 
+
+}
+
+.moreBtn > p {
+  margin-top: -5px;
 }
 
 .hidden {

@@ -14,7 +14,8 @@ function MainProducts(props) {
         alt="침대"
       />
       <div className="productName">{props.bed.title}</div>{" "}
-      <p>{props.bed.price}원</p>
+      <p>{props.bed.price.toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
     </div>
   );
 }

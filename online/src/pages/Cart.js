@@ -1,7 +1,9 @@
 import { Table } from "react-bootstrap";
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartPlus, cartMinus, deleteItem,removeList } from "../store.js";
+import { cartPlus, cartMinus, deleteItem, checkDelete } from "../store.js";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/Cart.scss";
 
 function Cart() {
@@ -42,31 +44,50 @@ function Cart() {
     return sum;
   };
 
+  //상품별 총액
+  // const productPrice = (sum, i) => {
+  //   sum = 0;
+  //   {
+  //     sum = state.cart[i].price * state.cart[i].count;
+  //   }
+  //   return sum;
+  // };
+
   // 장바구니 비었을 때 보여줄 화면
   if (state.cart.length === 0) {
     return (
       <div>
-        <div className="empty">장바구니가 비어있습니다.</div>
+        <div className="empty">
+          <p className="emptyWord">🔊 장바구니가 비어있습니다.</p>
+        </div>
       </div>
     );
   }
 
   // 체크 박스 상품id값만 삭제하기
-  const deleteSelected = () => {
-    if (checkItems.length === 0) {
-      alert("삭제할 상품을 선택해주세요");
-      console.log('선택할상품 없음')
-    } else {
+  const deleteSelected = (checked) => {
+    if (checked > -1) {
       setCheckItems(checkItems.filter((el) => !checkItems.includes(el.id)));
-      console.log('선택 상품 있음')
+      console.log("체크됨");
+      console.log(setCheckItems);
+    } else {
+      alert("삭제할 상품을 선택해주세요");
+      console.log("선택할상품 없음");
+      console.log(setCheckItems);
     }
   };
 
+  function folderDeleteClick() {
+    var checkBoxArr = [];
+    "input:checkbox[name='select-checked']:checked".each(function () {
+      checkBoxArr.push(this.val()); // 체크된 것만 값을 뽑아서 배열에 push
+      console.log(checkBoxArr);
+    });
+  }
 
   return (
     <div className="cartBox">
       <br />
-      
 
       <Table>
         <thead>
@@ -79,9 +100,11 @@ function Cart() {
                 checked={checkItems.length === state.cart.length ? true : false}
               />
             </th>
-            <th>name</th>
+            <th>product</th>
+            <th>title</th>
             <th>count</th>
             <th>price</th>
+            <th>delivery</th>
             <th>delete</th>
           </tr>
         </thead>
@@ -91,44 +114,62 @@ function Cart() {
               <td>
                 <input
                   type="checkbox"
-                  name="selece-checked"
+                  name="select-checked"
                   onChange={(e) =>
                     selectChecked(e.target.checked, state.cart[i].id)
                   }
                   checked={checkItems.includes(state.cart[i].id) ? true : false}
                 />
               </td>
+              <td>
+                <img
+                  src={
+                    process.env.PUBLIC_URL +
+                    "/image/bed" +
+                    state.cart[i].id +
+                    ".jpg"
+                  }
+                  width="60%"
+                  alt="침대"
+                />
+              </td>
               <td>{state.cart[i].name}</td>
               <td>
-                <button
-                  className="cartBtn"
-                  onClick={() => {
-                    {
-                      state.cart[i].count == 1
-                        ? alert("1개 이상 구매가 가능 합니다")
-                        : dispatch(cartMinus(state.cart[i].id));
-                    }
-                  }}
-                >
-                  -
-                </button>{" "}
-                {""} {""}
-                {state.cart[i].count} {""} {""}
-                <button
-                  className="cartBtn"
-                  onClick={() => {
-                    {
-                      state.cart[i].count === 9
-                        ? alert("구매 가능 수량은 최대 9개 입니다")
-                        : dispatch(cartPlus(state.cart[i].id));
-                    }
-                  }}
-                >
-                  +
-                </button>
+                <div className="btnDoble">
+                  <button
+                    className="cartBtn"
+                    onClick={() => {
+                      {
+                        state.cart[i].count == 1
+                          ? alert("1개 이상 구매가 가능 합니다")
+                          : dispatch(cartMinus(state.cart[i].id));
+                      }
+                    }}
+                  >
+                    -
+                  </button>
+                  <div>{state.cart[i].count}</div>
+                  <button
+                    className="cartBtn"
+                    onClick={() => {
+                      {
+                        state.cart[i].count === 9
+                          ? alert("구매 가능 수량은 최대 9개 입니다")
+                          : dispatch(cartPlus(state.cart[i].id));
+                      }
+                    }}
+                  >
+                    +
+                  </button>
+                </div>
               </td>
               <td className="cartFont">
-                {state.cart[i].price * state.cart[i].count} {""}원
+                {(state.cart[i].price * state.cart[i].count).toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                {""}원
+              </td>
+              <td>
+                <p>[Free]</p>
               </td>
               <td>
                 <button
@@ -137,7 +178,7 @@ function Cart() {
                     dispatch(deleteItem());
                   }}
                 >
-                  x
+                  <FontAwesomeIcon icon={faTrashCan} />
                 </button>
               </td>
             </tr>
@@ -147,10 +188,14 @@ function Cart() {
       <br />
 
       <div className="freeShip">
-        <button className="selectDelete" onClick={() =>deleteSelected(state.cart.id) }>
+        <button
+          className="selectDelete"
+          onClick={() => {
+            deleteSelected();
+          }}
+        >
           Selected Delete
         </button>
-        {/* <p className="freeWord">무료배송</p> */}
       </div>
 
       <div className="productAmount">
@@ -158,7 +203,12 @@ function Cart() {
           <div className="orderFont">Cart Total</div>
         </div>
         <div>
-          <div className="orderFont">{orderPrice()}원</div>
+          <div className="orderFont">
+            {orderPrice()
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            원
+          </div>
         </div>
       </div>
     </div>

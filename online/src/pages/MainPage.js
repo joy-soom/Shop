@@ -36,8 +36,12 @@ const MainPage = ({ bed, setBed }) => {
             });
         }}
       >
-        more
+        <p> more</p>
+       
       </button>
+      <br />
+      <br />
+      <br />
     </>
   );
 };

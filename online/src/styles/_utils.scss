@@ -1,10 +1,11 @@
 // 여러 파일에서 사용되는 sass 변수 및 mixin
 
 //COLOR
-$color-primary-400: rgb(0, 90, 238);
-$color-primary-300: rgb(99, 138, 201);
-$color-secondary-300: rgb(235, 232, 232);
-$color-secondary-200: rgb(209, 232, 238);
+$color-primary-400: rgb(108, 88, 76);
+$color-primary-300: rgb(169, 132, 103);
+$color-secondary-400: rgb(213, 189, 175);
+$color-secondary-300: rgb(245, 235, 224);
+$color-secondary-200: rgb(221, 231, 193);
 $color-secondary-100: rgb(255, 255, 255);
 
 //SIZE
@@ -13,11 +14,11 @@ $height-md: 300px;
 @mixin button($bg-color, $color) {
   background-color: $bg-color;
   color: $color;
-  border-style: none;
-  height: 40px;
-  width: fit-content;
-  padding: 8px 25px;
-  border-radius: 10px;
+  padding: 5px 20px;
+  width: 100px;
+  height: 50px;
+  font-weight: 600;
+  border-radius: 20% 0 20% 0;
 }
 
 //animation

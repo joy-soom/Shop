@@ -30,18 +30,18 @@ let stock = createSlice({
 let cart = createSlice({
   name: "cart",
   initialState: [
-    {
-      id: 0,
-      name: "Beige and Purple",
-      count: 2,
-      price: 150000,
-    },
-    {
-      id: 2,
-      name: "Brown and Beige",
-      count: 1,
-      price: 200000,
-    },
+    // {
+    //   id: 0,
+    //   name: "Beige and Purple",
+    //   count: 2,
+    //   price: 150000,
+    // },
+    // {
+    //   id: 2,
+    //   name: "Brown and Beige",
+    //   count: 1,
+    //   price: 200000,
+    // },
   ],
   reducers: {
     cartPlus(state, action) {
@@ -67,11 +67,19 @@ let cart = createSlice({
         alert("장바구니에 담겨 있는 상품입니다.");
       } else {
         state.push(action.payload);
+        alert("1개의 상품이 장바구니에 담겼습니다.");
       }
     },
 
+    //장바구니 체크박스 삭제
+    checkDelete(state, action) {
+      const index = state.filter((el) => el.id !== action.payload);
+      console.log(index);
+    },
+
+    //나랑 다르게 한 장바구니 개별 삭제
     removeList(state, action) {
-      const index = state.findIndex((e) => e.id === action.payload.id);
+      const index = state.findIndex((e) => e.id === action.payload);
       console.log(index);
       if (index > -1) {
         state.splice(index, 1);
@@ -96,5 +104,6 @@ export let {
   deleteItem,
   allPrice,
   addList,
-  removeList,
+  checkDelete,
+
 } = cart.actions;

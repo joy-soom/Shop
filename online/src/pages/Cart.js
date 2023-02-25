@@ -44,15 +44,6 @@ function Cart() {
     return sum;
   };
 
-  //상품별 총액
-  // const productPrice = (sum, i) => {
-  //   sum = 0;
-  //   {
-  //     sum = state.cart[i].price * state.cart[i].count;
-  //   }
-  //   return sum;
-  // };
-
   // 장바구니 비었을 때 보여줄 화면
   if (state.cart.length === 0) {
     return (
@@ -66,16 +57,19 @@ function Cart() {
 
   // 체크 박스 상품id값만 삭제하기
   const deleteSelected = (checked) => {
-    if (checked > -1) {
-      setCheckItems(checkItems.filter((el) => !checkItems.includes(el.id)));
-      console.log("체크됨");
-      console.log(setCheckItems);
-    } else {
-      alert("삭제할 상품을 선택해주세요");
-      console.log("선택할상품 없음");
-      console.log(setCheckItems);
-    }
+   if (checkItems.length === 0) {
+    alert("삭제할 상품을 선택해주세요")
+    console.log('선택한 상품 없음')
+    console.log(checkItems.length)
+   } else {
+    setCheckItems(checkItems.filter((el) => el !== el.id))
+    console.log(setCheckItems.length)
+
+   
+   }
   };
+
+  
 
   function folderDeleteClick() {
     var checkBoxArr = [];

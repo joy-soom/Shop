@@ -58,7 +58,7 @@ function EachDetail(props) {
           </div>
         </div> */}
         <div className="detailText">
-          <h4 className="pt-5">{clickProduct.title}</h4>
+          <h4 className="eachTitle">{clickProduct.title}</h4>
           <p>{clickProduct.content}</p>
           <p>{clickProduct.price.toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
@@ -213,4 +213,5 @@ function Table({ clickProduct }) {
     </table>
   );
 }
+
 export default EachDetail;

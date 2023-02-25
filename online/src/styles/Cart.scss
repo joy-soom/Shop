@@ -37,7 +37,7 @@ td {
 .freeShip {
   display: flex;
   align-items: center;
-  width: 94%;
+  width: 94.5%;
   margin: auto;
 }
 
@@ -90,4 +90,12 @@ td {
 .btnDoble {
   display: flex;
   justify-content: space-evenly;
+}
+
+@media screen and (max-width: 420px) {
+  .emptyWord {
+    font-weight: 550;
+    font-size: 15px;
+  
+  }
 }

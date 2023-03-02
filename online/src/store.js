@@ -73,8 +73,13 @@ let cart = createSlice({
 
     //장바구니 체크박스 삭제
     checkDelete(state, action) {
-      const index = state.filter((el) => el.id !== action.payload);
-      console.log(index);
+      const index = state.findIndex((el) => el.id == action.payload);
+      if (index.length > -1) {
+        console.log(index)
+        alert("선택됨")
+      } else {
+        alert("암것도 없잖아")
+      }
     },
 
     //나랑 다르게 한 장바구니 개별 삭제
@@ -104,6 +109,4 @@ export let {
   deleteItem,
   allPrice,
   addList,
-  checkDelete,
-
 } = cart.actions;

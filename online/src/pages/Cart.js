@@ -1,7 +1,7 @@
 import { Table } from "react-bootstrap";
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartPlus, cartMinus, deleteItem, checkDelete } from "../store.js";
+import { cartPlus, cartMinus, deleteItem} from "../store.js";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/Cart.scss";
@@ -56,28 +56,17 @@ function Cart() {
   }
 
   // 체크 박스 상품id값만 삭제하기
-  const deleteSelected = (checked) => {
-   if (checkItems.length === 0) {
-    alert("삭제할 상품을 선택해주세요")
-    console.log('선택한 상품 없음')
-    console.log(checkItems.length)
-   } else {
-    setCheckItems(checkItems.filter((el) => el !== el.id))
-    console.log(setCheckItems.length)
-
-   
-   }
+  const deleteSelected = () => {
+    if (checkItems.length === 0) {
+      alert("삭제할 상품을 선택해주세요");
+      console.log("선택한 상품 없음");
+      console.log(checkItems.length);
+    } else {
+      const checkArray = checkItems.filter((el) => el.id == state.cart.id);
+      console.log(checkArray.length);
+      setCheckItems(checkArray);
+    }
   };
-
-  
-
-  function folderDeleteClick() {
-    var checkBoxArr = [];
-    "input:checkbox[name='select-checked']:checked".each(function () {
-      checkBoxArr.push(this.val()); // 체크된 것만 값을 뽑아서 배열에 push
-      console.log(checkBoxArr);
-    });
-  }
 
   return (
     <div className="cartBox">
@@ -158,8 +147,9 @@ function Cart() {
                 </div>
               </td>
               <td className="cartFont">
-                {(state.cart[i].price * state.cart[i].count).toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                {(state.cart[i].price * state.cart[i].count)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
                 {""}원
               </td>
               <td>

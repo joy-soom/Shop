@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { addList } from "../store.js";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import "../styles/Eachdetail.scss";
 
 function EachDetail(props) {
-  let state = useSelector((state) => state);
   let dispatch = useDispatch();
   let [modal, setModal] = useState(true);
   useEffect(() => {
@@ -25,22 +24,15 @@ function EachDetail(props) {
   }, []);
 
   let { id } = useParams();
-  // console.log(id);
   let clickProduct = props.bed.find(function (x) {
     return x.id == id;
   });
-  //let clickProduct = props.bed.find(x => x.id ==id)랑 같다 이게 신문법
 
-  let [tap, setTap] = useState(0); //true or false저장도가능하지만 숫자로 해줘야 3가지 내용을 보여줘야 하는 상황에선 더 자유롭다
-  //1이면1번째 내용이 2이면 2번째 내용을 보여준다
+  let [tap, setTap] = useState(0);
 
-
- 
   return (
     <div className={"container start " + fade2}>
-      {modal == true ? (
-        <div className="alert">2초 이내 구매시 할인</div>
-      ) : null}
+      {modal == true ? <div className="alert">2초 이내 구매시 할인</div> : null}
       <div className="detailContent">
         <div className="imgContent">
           <img
@@ -48,20 +40,17 @@ function EachDetail(props) {
             width="100%"
           />
         </div>
-<br />
-<br />
-{/* <div>
-
-          <div className="cartInfo">
-
-
-          </div>
-        </div> */}
+        <br />
+        <br />
         <div className="detailText">
           <h4 className="eachTitle">{clickProduct.title}</h4>
           <p>{clickProduct.content}</p>
-          <p>{clickProduct.price.toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
+          <p>
+            {clickProduct.price
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            원
+          </p>
           <button
             className="cardOrderBtn"
             onClick={() => {
@@ -78,16 +67,11 @@ function EachDetail(props) {
             담기
           </button>
         </div>
-
-        
       </div>
       <br />
       <br />
 
       <Nav variant="tabs" defaultActiveKey="link0">
-        {/* defaultActiveKey="link0" 얘는 옵션인데 해당페이지를 열었을 때
-        기본으로 눌려있을 버튼을 말한다 그래서 여기선 link0번 버튼 이래서
-        밑에 eventKey도 이름 다다르게지정해줘야 한다 */}
         <Nav.Item>
           <Nav.Link
             onClick={() => {

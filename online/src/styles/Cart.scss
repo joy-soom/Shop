@@ -1,7 +1,7 @@
 @import "utils";
 
 .cartBox {
-  width: 91%;
+  width: 90%;
   margin: auto;
 }
 thead {
@@ -9,7 +9,7 @@ thead {
 }
 
 td {
-  width: 13%;
+  width: 15%;
   vertical-align: middle;
 }
 .cartFont {
@@ -68,7 +68,7 @@ td {
 .empty {
   margin: auto;
   width: 95%;
-  background-color: $color-secondary-200;
+  background-color: $color-secondary-300;
   height: 300px;
   margin-top: 100px;
   line-height: 300px;

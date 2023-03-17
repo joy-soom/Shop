@@ -27,11 +27,7 @@ const MainPage = ({ bed, setBed }) => {
           axios
             .get("https://codingapple1.github.io/shop/data2.json")
             .then((결과) => {
-              // console.log(결과.data);
-              //위의data를 사용해서 html생성해주세요 리액트-> 스위치 조작
-              //bed에 데이터 몇개 추가해주세요~ 그럼 html도 알아서 생성될듯
-
-              let copy = [...bed, ...결과.data]; //복사본 소장
+              let copy = [...bed, ...결과.data]; 
               setBed(copy);
             });
         }}

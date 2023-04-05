@@ -38,6 +38,8 @@ const MainPage = ({ bed, setBed }) => {
       <br />
       <br />
       <br />
+
+     
     </>
   );
 };

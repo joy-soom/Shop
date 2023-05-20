@@ -1,11 +1,18 @@
 # Soom Shop
+침구를 판매 하는 쇼핑몰 사이트
+<br><br>
 ## Start Project
 ```
 git clone https://github.com/soominpark9/Shop.git
-cd online/
+cd online
 npm i
 npm start 
 ```
+## Link
+https://select-shop-site.netlify.app/<br>
+<br>
+## 페이지 설명
+### 메인 페이지
 
 ## Stack
 - React

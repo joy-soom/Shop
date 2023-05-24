@@ -39,3 +39,8 @@ https://select-shop-site.netlify.app/<br>
 online/ # react app
 .gitignore
 ```
+## 성장 경험
+
+1. useState를 통해 state를 관리하는 방법을 배우고 props를 자식요소들에게 전달 해 주는 흐름에 익숙해 지게 되었다.
+2. redux-toolkit를 통해 props 없이 state를 공유 하는 방식을 활용 할 수 있게 되었다.
+3. sass를 활용하여 재활용성이 높은 css 코드를 구조화 하여 생성 해 볼 수 있었다.
